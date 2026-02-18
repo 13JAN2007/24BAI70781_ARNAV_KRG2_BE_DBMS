@@ -12,8 +12,8 @@ to ensure database security.
 
 | Component                    | Tool       |
 |------------------------------|------------|
-| Database Management System   | PostgreSQL |
-| Database Administration Tool | pgAdmin    |
+| Database Management System   | MySQL |
+| Database Administration Tool | MySQL Workbench    |
 
 ---
 
