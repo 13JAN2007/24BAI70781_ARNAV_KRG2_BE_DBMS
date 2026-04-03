@@ -54,13 +54,20 @@ Create and execute a stored procedure that retrieves employee data from a table 
 - Apply aggregate functions within procedures for data analysis
 - Develop reusable database logic for real-world business scenarios used in companies like CData and Toddle
 
- # Creating the table
+ ## Creating the table
+ 
  <img width="727" height="322" alt="image" src="https://github.com/user-attachments/assets/f6d578ec-fe19-4211-8733-634e8f5a83a1" />
- # Procedure
+ 
+ ## Procedure
+ 
  <img width="651" height="339" alt="image" src="https://github.com/user-attachments/assets/953b2bfd-3e83-455d-b5d2-384ec3669c90" />
- # Calling 
+ 
+ ## Calling 
+ 
  <img width="768" height="236" alt="image" src="https://github.com/user-attachments/assets/0f8cd615-4a0d-49c7-a68a-e17d1bd19d25" />
- # Output
+ 
+ ## Output
+ 
  <img width="832" height="483" alt="image" src="https://github.com/user-attachments/assets/1aada041-a166-4d3b-972d-b2911d5022d0" />
 
  
