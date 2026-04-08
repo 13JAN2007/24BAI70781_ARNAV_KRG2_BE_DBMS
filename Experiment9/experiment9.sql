@@ -1,0 +1,40 @@
+
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    working_hours INT,
+    perhour_salary NUMERIC,
+    total_payable_amount NUMERIC
+);
+
+
+
+CREATE OR REPLACE FUNCTION CALCULATE_PAYABLE_AMOUNT() RETURNS TRIGGER
+	AS
+	$$
+	
+	BEGIN
+                  NEW.total_payable_amount=NEW.working_hours*NEW.perhour_salary;
+				  IF NEW.total_payable_amount>25000 THEN 
+				  RAISE EXCEPTION 'INVALID ENTRY AND AMOUNT CAN NOT BE GREATER THEN 25000';
+				  END IF;
+			RETURN NEW	;			  
+	 
+	END;
+	
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE OR REPLACE TRIGGER TRG_CALCULATE_PAYABLE_AMOUNT
+BEFORE INSERT
+ON employee
+FOR EACH ROW
+EXECUTE FUNCTION CALCULATE_PAYABLE_AMOUNT()
+
+
+
+
+SELECT * FROM employee
+
+INSERT INTO employee(EMP_ID,EMP_NAME,WORKING_HOURS,PERHOUR_SALARY) VALUES(2,'VINAY',25,10100)
