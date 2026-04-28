@@ -1,33 +1,20 @@
-CREATE TABLE Products (
-    prod_id INT PRIMARY KEY,
-    prod_name VARCHAR(50),
-    sup_id INT,
-    stock_qty INT
-);
 
-CREATE TABLE Orders (
-    order_id INT PRIMARY KEY,
-    prod_id INT,
-    qty INT
-);
-
-INSERT INTO Products VALUES 
-(101, 'Laptop', 1, 10),
-(102, 'Mouse', 1, 20);
-
-DELIMITER //
-
-CREATE TRIGGER update_stock_after_order
-AFTER INSERT ON Orders
-FOR EACH ROW
+CREATE OR REPLACE FUNCTION update_stock()
+RETURNS TRIGGER AS $$
 BEGIN
-    UPDATE Products
+    UPDATE Tbl_Products
     SET stock_qty = stock_qty - NEW.qty
     WHERE prod_id = NEW.prod_id;
+
+    RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;
 
-//
+CREATE TRIGGER trg_update_stock
+AFTER INSERT ON Tbl_Orders
+FOR EACH ROW
+EXECUTE FUNCTION update_stock();
 
-DELIMITER ;
-
-INSERT INTO Orders VALUES (1, 101, 3);
+-- Test
+INSERT INTO Tbl_Orders
+VALUES (9003, 501, 103, '2026-04-28', 2);
